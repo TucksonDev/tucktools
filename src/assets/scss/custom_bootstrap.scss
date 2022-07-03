@@ -1,0 +1,46 @@
+// Brand colors (SASS Variables)
+$brand-clear-blue: #8ECAE6;
+$brand-blue: #219EBC;
+$brand-dark-blue: #023047;
+$brand-yellow: #FFB703;
+$brand-orange: #FB8500;
+
+// Brand colors (CSS Variables)
+// TODO: For some reason, I can't seem to be able to access SASS variables in here
+body {
+    --brand-clear-blue: #8ECAE6;
+    --brand-blue: #219EBC;
+    --brand-dark-blue: #023047;
+    --brand-yellow: #FFB703;
+    --brand-orange: #FB8500;
+}
+
+// Brand Typography
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
+
+// BS colors
+$primary: $brand-orange;
+$link-color: $brand-blue;
+$link-decoration: none;
+
+// To change CSS variables, we use body instead of :root or html, to override the root variables
+body {
+    // --bs-body-bg: green;
+    --bs-dark-rgb: 2, 48, 71;
+    --bs-font-sans-serif: "NotoSans", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+// BS classes
+.bg-dark {
+    background-color: $brand-dark-blue;
+}
+
+// Other general styles
+.main-container {
+    min-height: 600px;
+}
+
+form .help-message {
+    color: lightslategray;
+    font-size: 0.8rem;
+}
