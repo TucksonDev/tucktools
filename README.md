@@ -13,11 +13,11 @@ These tools have been created to demonstrate my technical skills. They have all 
 - Vue-router is used to handle routing
 - Pinia is used as a store manager
 - Sass is used as the CSS Preprocessor
-- To handle web3 interactions, the project uses web3modal (to handle wallet connection) and ethers (to handle blockchain-related operations)
+- To handle web3 interactions, the project uses web3modal (to handle wallet connection) and ethers (to handle blockchain-related operations). For now, only mainnet and rinkeby are supported.
 - Operations that require external api access with api keys are called through the backend API, which is accessed using axios
 
 # Associated services
-- A backend API is required for the tools that need to access third party token-gated APIs. The base endpoint of this backend is specified in the .env file, which is then specified on axios queries. An implementation of this API can be found [here]().
+- A backend API is required for the tools that need to access third party token-gated APIs. The base endpoint of this backend is specified in the .env file, which is then specified on axios queries. An implementation of this API can be found [here](https://github.com/TucksonDev/tucktools-server).
 - A smartcontract for sending messages as NFTs is used in the related tool. The address of this smartcontract can be configured in `src/constants/blockchain.ts` and its abi should be present in `assets/abis/messagenft.json`. An implementation of this smartcontract can be found [here](https://github.com/TucksonDev/nftmessage-smartcontract).
 
 # CLI instructions
