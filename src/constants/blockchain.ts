@@ -85,7 +85,7 @@ export const getContractAddress = (contract_id: Number, network: Networks = DEFA
 
                 case Networks.ETH_MAINNET:
                 default:
-                    return '';
+                    return '0xc62E3F02ED11E4f95ff8c8FC451882378C2fdba5';
             }
     }
 }
