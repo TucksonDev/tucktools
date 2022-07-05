@@ -24,6 +24,7 @@ dist-ssr
 
 # Environment files
 .env
+.env.production
 
 # Custom files
 Notes.md

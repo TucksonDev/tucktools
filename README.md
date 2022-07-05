@@ -15,6 +15,7 @@ These tools have been created to demonstrate my technical skills. They have all 
 - Sass is used as the CSS Preprocessor
 - To handle web3 interactions, the project uses web3modal (to handle wallet connection) and ethers (to handle blockchain-related operations). For now, only mainnet and rinkeby are supported.
 - Operations that require external api access with api keys are called through the backend API, which is accessed using axios
+- Environment variables are set in .env for all environments and .env.production for overriding variables on production. When running `npm run build` variables in .env.production will override variables in .env .
 
 # Associated services
 - A backend API is required for the tools that need to access third party token-gated APIs. The base endpoint of this backend is specified in the .env file, which is then specified on axios queries. An implementation of this API can be found [here](https://github.com/TucksonDev/tucktools-server).
