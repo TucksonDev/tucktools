@@ -24,6 +24,8 @@ These tools have been created to demonstrate my technical skills. They have all 
 # CLI instructions
 - `npm install` : To install all dependencies
 - `npm run dev` : To initialize the web server daemon for development
+- `npm run lint` : To view linting and formatting problems on the project
+- `npm run lint:fix` : To fix linting and formatting problems on the project
 - `npm run build` : To generate and pack production files
 
 
