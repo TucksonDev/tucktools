@@ -1,22 +1,14 @@
-<script setup lang="ts">
-    
-</script>
+<script setup lang="ts"></script>
 
-<template>
-    
-</template>
-<style></style>
+<template>Hey!</template>
 
 <script lang="ts">
-export default {
-    computed: {},
-
-    mounted() {
-    },
-
-    data() {
-        return {
-        };
-    },
-};
+    export default {
+        data() {
+            return {};
+        },
+        computed: {},
+    };
 </script>
+
+<style></style>

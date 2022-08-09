@@ -3,5 +3,7 @@
 export {};
 
 declare global {
-    interface Window { FilerobotImageEditor?: any; }
+    interface Window {
+        FilerobotImageEditor?: any;
+    }
 }

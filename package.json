@@ -1,31 +1,40 @@
 {
-  "name": "tucktools",
-  "private": true,
-  "version": "1.0.0",
-  "scripts": {
-    "dev": "vite",
-    "build": "vue-tsc --noEmit && vite build",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "@ethersproject/providers": "^5.6.8",
-    "@popperjs/core": "^2.11.5",
-    "@walletconnect/web3-provider": "^1.7.8",
-    "axios": "^0.27.2",
-    "bootstrap": "^5.1.3",
-    "bootstrap-icons": "^1.8.3",
-    "ethers": "^5.6.8",
-    "pinia": "^2.0.14",
-    "vue": "^3.2.25",
-    "vue-router": "^4.0.15",
-    "web3modal": "^1.9.7"
-  },
-  "devDependencies": {
-    "@vitejs/plugin-vue": "^2.3.3",
-    "sass": "^1.53.0",
-    "sass-loader": "^13.0.1",
-    "typescript": "^4.5.4",
-    "vite": "^2.9.9",
-    "vue-tsc": "^0.34.7"
-  }
+    "name": "tucktools",
+    "private": true,
+    "version": "1.0.0",
+    "scripts": {
+        "dev": "vite",
+        "build": "vue-tsc --noEmit && vite build",
+        "preview": "vite preview",
+        "typecheck": "vue-tsc --noEmit",
+        "lint": "eslint --ext .ts,.vue,.js src",
+        "lint:fix": "eslint --ext .ts,.vue,.js src --fix src"
+    },
+    "dependencies": {
+        "@ethersproject/providers": "^5.6.8",
+        "@popperjs/core": "^2.11.5",
+        "@walletconnect/web3-provider": "^1.7.8",
+        "axios": "^0.27.2",
+        "bootstrap": "^5.1.3",
+        "bootstrap-icons": "^1.8.3",
+        "ethers": "^5.6.8",
+        "pinia": "^2.0.14",
+        "vue": "^3.2.25",
+        "vue-router": "^4.0.15",
+        "web3modal": "^1.9.7"
+    },
+    "devDependencies": {
+        "@typescript-eslint/eslint-plugin": "^5.33.0",
+        "@vitejs/plugin-vue": "^2.3.3",
+        "eslint": "^8.21.0",
+        "eslint-config-prettier": "^8.5.0",
+        "eslint-plugin-prettier": "^4.2.1",
+        "eslint-plugin-vue": "^9.3.0",
+        "prettier": "^2.7.1",
+        "sass": "^1.53.0",
+        "sass-loader": "^13.0.1",
+        "typescript": "^4.5.4",
+        "vite": "^2.9.9",
+        "vue-tsc": "^0.34.7"
+    }
 }

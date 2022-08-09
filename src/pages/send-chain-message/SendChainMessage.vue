@@ -1,29 +1,26 @@
 <script setup lang="ts">
-    import TopNavbar from '../../components/TopNavbar.vue';
-    import Footer from '../../components/Footer.vue';
-    import { AppMessages } from '../../messages/messages';
+    import TopNavbar from "../../components/TopNavbar.vue";
+    import FooterTemplate from "../../components/FooterTemplate.vue";
+    import { AppMessages } from "../../messages/messages";
     import { ethers } from "ethers";
-    import axios from 'axios';
-    import { useWalletStore } from '../../lib/wallet-store';
-    import { DEFAULT_NETWORK } from '../../constants';
+    import axios from "axios";
+    import { useWalletStore } from "../../lib/wallet-store";
+    import { DEFAULT_NETWORK } from "../../constants";
 
     const wallet = useWalletStore();
 
     const sendMessage = async (message: string, recipient: string): Promise<string> => {
-        if (
-            !wallet.walletIsReady() ||
-            !wallet.state.provider
-        ) {
+        if (!wallet.walletIsReady() || !wallet.state.provider) {
             alert(AppMessages.WalletNotConnectedErrorMessage);
             console.log(AppMessages.WalletNotConnectedErrorMessage);
-            return '';
+            return "";
         }
 
         try {
             const messageToSend = ethers.utils.hexlify(ethers.utils.toUtf8Bytes(message));
             const transactionRequest = {
-                'to': recipient,
-                'data': messageToSend
+                to: recipient,
+                data: messageToSend,
             };
             const signer = await wallet.state.provider.getSigner();
             const transactionResponse = await signer.sendTransaction(transactionRequest);
@@ -37,20 +34,17 @@
             alert(AppMessages.BlockchainConnectionErrorMessage);
             throw error;
         }
-    }
+    };
 
     let sendChainMessage = async () => {
-        if (
-            !wallet.walletIsReady() ||
-            !wallet.state.provider
-        ) {
+        if (!wallet.walletIsReady() || !wallet.state.provider) {
             alert(AppMessages.WalletNotConnectedErrorMessage);
             console.log(AppMessages.WalletNotConnectedErrorMessage);
-            return '';
+            return "";
         }
 
-        let textToSend = (<HTMLInputElement>document.getElementById('message-to-send'))?.value;
-        let recipientAddress = (<HTMLInputElement>document.getElementById('recipient-address'))?.value;
+        let textToSend = (<HTMLInputElement>document.getElementById("message-to-send"))?.value;
+        let recipientAddress = (<HTMLInputElement>document.getElementById("recipient-address"))?.value;
         if (!textToSend || !recipientAddress) {
             alert(AppMessages.AllFieldsRequiredErrorMessage);
             return;
@@ -61,29 +55,33 @@
             return;
         }
 
-        let resultBox = document.getElementById('sending-result');
+        let resultBox = document.getElementById("sending-result");
         let transactionHash = await sendMessage(textToSend, recipientAddress);
 
         if (resultBox && transactionHash) {
             const linkUrl = wallet.state.blockExplorerBaseUrl + "/tx/" + transactionHash;
             resultBox.innerHTML =
                 "The transaction has been sent to the blockchain, you can see its status " +
-                "<a href='" + linkUrl + "' target='_blank'>by clicking here</a>.";
+                "<a href='" +
+                linkUrl +
+                "' target='_blank'>by clicking here</a>.";
         }
-    }
+    };
 
     let showTransactionConfirmation = (transactionHash: string) => {
-        let resultBox = document.getElementById('sending-result');
+        let resultBox = document.getElementById("sending-result");
         if (resultBox) {
             const linkUrl = wallet.state.blockExplorerBaseUrl + "/tx/" + transactionHash;
             resultBox.innerHTML =
                 "Message sent! The transaction has been confirmed. You can see its status " +
-                "<a href='" + linkUrl + "' target='_blank'>by clicking here</a>.";
+                "<a href='" +
+                linkUrl +
+                "' target='_blank'>by clicking here</a>.";
         }
-    }
+    };
 
     let readChainMessage = async () => {
-        let transactionHash = (<HTMLInputElement>document.getElementById('transaction-hash'))?.value;
+        let transactionHash = (<HTMLInputElement>document.getElementById("transaction-hash"))?.value;
         if (!transactionHash) {
             alert(AppMessages.AllFieldsRequiredErrorMessage);
             return;
@@ -93,7 +91,7 @@
             alert("Transaction ID message does not have the right format or length");
             return;
         }
-        
+
         const transaction = await getBlockchainTransaction(transactionHash);
         if (!transaction.data) {
             alert("Transaction does not have a data field");
@@ -107,7 +105,7 @@
                 return;
             }
 
-            let resultBox = document.getElementById('read-result');
+            let resultBox = document.getElementById("read-result");
             if (resultBox) {
                 resultBox.innerHTML = decodedMessage;
             }
@@ -115,17 +113,14 @@
             alert("Transaction does not have a message in the data field");
             return;
         }
-    }
+    };
 
     let getBlockchainTransaction = async (transactionHash: string) => {
         try {
-            const chainId = wallet.state.isConnected? wallet.state.providerChainID : DEFAULT_NETWORK;
+            const chainId = wallet.state.isConnected ? wallet.state.providerChainID : DEFAULT_NETWORK;
 
             const getTransactionUrl =
-                import.meta.env.VITE_BACKEND_ROOT + '/' +
-                'eth/transaction/' +
-                chainId + '/' +
-                transactionHash;
+                import.meta.env.VITE_BACKEND_ROOT + "/" + "eth/transaction/" + chainId + "/" + transactionHash;
 
             const axiosResponse = await axios.get(getTransactionUrl);
 
@@ -134,7 +129,7 @@
             alert(AppMessages.SendBackendRequestErrorMessage);
             throw error;
         }
-    }
+    };
 </script>
 
 <template>
@@ -148,20 +143,20 @@
                 </div>
                 <div class="section-intro">
                     <p>
-                        Write the message you want to send and to whom you want to send it.
-                        Clicking "Send" will trigger Metamask to send a blockchain transaction.
-                        Keep in mind that you will need to pay gas fees in order to send the transaction.
-                        The recipient will receive the transaction with the message encoded in the "data" field.
+                        Write the message you want to send and to whom you want to send it. Clicking "Send" will trigger
+                        Metamask to send a blockchain transaction. Keep in mind that you will need to pay gas fees in
+                        order to send the transaction. The recipient will receive the transaction with the message
+                        encoded in the "data" field.
                     </p>
                 </div>
                 <form @submit.prevent="sendChainMessage">
                     <div class="mb-4">
                         <label for="recipient-address">Recipient address</label>
-                        <input type="text" class="form-control" id="recipient-address" />
+                        <input id="recipient-address" type="text" class="form-control" />
                     </div>
                     <div class="mb-4">
                         <label for="message-to-send">Message to send</label>
-                        <input type="text" class="form-control" id="message-to-send" />
+                        <input id="message-to-send" type="text" class="form-control" />
                     </div>
                     <button type="submit" class="btn btn-primary">Send message</button>
                 </form>
@@ -176,14 +171,14 @@
                 </div>
                 <div class="section-intro">
                     <p>
-                        Here you can specify a transaction ID and the system will try to decode
-                        a message stored in the "data" field of the transaction.
+                        Here you can specify a transaction ID and the system will try to decode a message stored in the
+                        "data" field of the transaction.
                     </p>
                 </div>
                 <form @submit.prevent="readChainMessage">
                     <div class="mb-4">
                         <label for="transaction-hash">Transaction Hash</label>
-                        <input type="text" class="form-control" id="transaction-hash" />
+                        <input id="transaction-hash" type="text" class="form-control" />
                     </div>
                     <button type="submit" class="btn btn-primary">Read message</button>
                 </form>
@@ -195,8 +190,17 @@
         </div>
     </div>
 
-    <Footer />
+    <FooterTemplate />
 </template>
+
+<script lang="ts">
+    export default {
+        data() {
+            return {};
+        },
+        computed: {},
+    };
+</script>
 
 <style scoped>
     .col {
@@ -210,17 +214,3 @@
         padding-right: 1.5rem;
     }
 </style>
-
-<script lang="ts">
-export default {
-    computed: {},
-
-    mounted() {
-    },
-
-    data() {
-        return {
-        };
-    },
-};
-</script>

@@ -1,14 +1,11 @@
 <script setup lang="ts">
-    import { useWalletStore } from '../lib/wallet-store';
+    import { useWalletStore } from "../lib/wallet-store";
     import { networkIsValid } from "../constants";
 
     const wallet = useWalletStore();
 
     let connectDisconnectSwitch = async () => {
-        if (
-            wallet.state.isConnected &&
-            !networkIsValid(wallet.state.providerChainID)
-        ) {
+        if (wallet.state.isConnected && !networkIsValid(wallet.state.providerChainID)) {
             await wallet.checkWrongNetwork();
         } else if (wallet.state.isConnected) {
             wallet.disconnect();
@@ -22,19 +19,21 @@
     <p v-if="wallet.state.isConnected">
         Connected on {{ wallet.state.providerChainName }} as {{ wallet.state.address.substring(0, 6) + "..." }}
         <a
-            class="btn btn-link"
             v-if="!networkIsValid(wallet.state.providerChainID)"
-            @click.stop="connectDisconnectSwitch">
-                (Switch network)
+            class="btn btn-link"
+            @click.stop="connectDisconnectSwitch"
+        >
+            (Switch network)
         </a>
         <a
-            class="btn btn-link"
             v-if="networkIsValid(wallet.state.providerChainID)"
-            @click.stop="connectDisconnectSwitch">
-                (Disconnect)
+            class="btn btn-link"
+            @click.stop="connectDisconnectSwitch"
+        >
+            (Disconnect)
         </a>
     </p>
-    <button class="btn btn-primary" v-if="!wallet.state.isConnected" @click.stop="connectDisconnectSwitch">
+    <button v-if="!wallet.state.isConnected" class="btn btn-primary" @click.stop="connectDisconnectSwitch">
         Connect
     </button>
 </template>

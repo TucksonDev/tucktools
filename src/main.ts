@@ -6,9 +6,9 @@ References (already copied to README, we can remove this):
 */
 
 // Libraries
-import { createApp } from 'vue';
-import { createWebHistory } from 'vue-router';
-import { createPinia } from 'pinia';
+import { createApp } from "vue";
+import { createWebHistory } from "vue-router";
+import { createPinia } from "pinia";
 
 // (Styles are imported in vite.config, because I can't seem to find the proper way to load my custom scss from here)
 // import "./assets/scss/custom_bootstrap.scss";
@@ -16,8 +16,8 @@ import { createPinia } from 'pinia';
 // import "bootstrap-icons/font/bootstrap-icons.scss";
 
 // Main flow components
-import createRouter from './pages/routes';
-import App from './App.vue';
+import createRouter from "./pages/routes";
+import App from "./App.vue";
 
 // Create the Pinia store
 const store = createPinia();
@@ -35,7 +35,7 @@ app.use(router);
 app.use(store);
 
 // Mount the app
-app.mount('#app');
+app.mount("#app");
 
 // Bootstrap (Why does this need to be here?)
 import "bootstrap/dist/js/bootstrap.js";
