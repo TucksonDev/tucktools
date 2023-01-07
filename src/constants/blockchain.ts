@@ -8,12 +8,12 @@ export const TOKEN_DECIMALS = 18;
 // EVM Networks
 export enum Networks {
     ETH_MAINNET = 1,
-    ETH_RINKEBY = 4,
+    ETH_GOERLI = 5,
 }
 export const getNetwork = (network: string = import.meta.env.VITE_BLOCKCHAIN_NETWORK) => {
     switch (network) {
-        case "eth_rinkeby":
-            return Networks.ETH_RINKEBY;
+        case "eth_goerli":
+            return Networks.ETH_GOERLI;
 
         case "eth_mainnet":
         default:
@@ -39,10 +39,10 @@ export const getNetworkParams = (network: Networks = DEFAULT_NETWORK) => {
         },
     };
 
-    const ethRinkebyParams = {
-        chainId: `0x${Networks.ETH_RINKEBY.toString(16)}`,
-        chainName: "Rinkeby",
-        blockExplorerUrls: ["https://rinkeby.etherscan.io"],
+    const ethGoerliParams = {
+        chainId: `0x${Networks.ETH_GOERLI.toString(16)}`,
+        chainName: "Goerli",
+        blockExplorerUrls: ["https://goerli.etherscan.io"],
         nativeCurrency: {
             name: "Ethereum",
             symbol: "ETH",
@@ -58,8 +58,8 @@ export const getNetworkParams = (network: Networks = DEFAULT_NETWORK) => {
     switch (network) {
         case Networks.ETH_MAINNET:
             return ethMainnetParams;
-        case Networks.ETH_RINKEBY:
-            return ethRinkebyParams;
+        case Networks.ETH_GOERLI:
+            return ethGoerliParams;
 
         default:
             return unknownChainParams;
@@ -76,7 +76,7 @@ export const getContractAddress = (contract_id: number, network: Networks = DEFA
         /////////////////
         case MESSAGENFT_CONTRACT_ID:
             switch (network) {
-                case Networks.ETH_RINKEBY:
+                case Networks.ETH_GOERLI:
                     return "0x4904a5D49DD25e68e89dd9654C757a05bD1790Ff";
 
                 case Networks.ETH_MAINNET:
