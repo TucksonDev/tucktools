@@ -13,7 +13,7 @@ These tools have been created to demonstrate my technical skills. They have all 
 - Vue-router is used to handle routing
 - Pinia is used as a store manager
 - Sass is used as the CSS Preprocessor
-- To handle web3 interactions, the project uses web3modal (to handle wallet connection) and ethers (to handle blockchain-related operations). For now, only mainnet and goerli are supported.
+- To handle web3 interactions, the project uses web3modal (to handle wallet connection) and ethers (to handle blockchain-related operations). For now, only ethereum mainnet, goerli and polygon mainnet are supported.
 - Operations that require external api access with api keys are called through the backend API, which is accessed using axios
 - Environment variables are set in .env for all environments and .env.production for overriding variables on production. When running `npm run build` variables in .env.production will override variables in .env .
 - Google Analytics can be activated by setting the environment variable VITE_GA_ID
